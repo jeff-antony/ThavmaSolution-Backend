@@ -390,6 +390,10 @@ app.post('/api/contact/:id/respond', authenticateToken, async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-}); 
+// Health check / root route
+app.get('/', (req, res) => {
+  res.json({ status: 'ok', service: 'thavma-admin-server', timestamp: new Date().toISOString() });
+});
+
+// Export the Express app as a serverless handler for Vercel
+module.exports = (req, res) => app(req, res);

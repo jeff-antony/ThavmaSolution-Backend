@@ -1,0 +1,18 @@
+# Server Configuration
+//PORT=5000
+//SERVER_URL=http://localhost:5000
+
+# JWT Secret (change this to a secure random string)
+//JWT_SECRET=2908395fd3b0df7fdba44a2fdbbcb268837f7e28bf92e961f9201c532aad02e05378c2851bb0093f127af95cbb57d6bb338e40bf4bb3f87446ebadd36dc0307d
+
+# MongoDB Connection String
+//MONGODB_URI=mongodb+srv://antonyjefin7:Xmg6EaDguUzrurl1@cluster0.sgjenob.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+# Email Configuration (for Gmail)
+//EMAIL_USER=thavmasolutions1@gmail.com
+//EMAIL_PASS=kqlfdhbgthzenbpv
+
+# Note: For Gmail, you need to:
+# 1. Enable 2-factor authentication
+# 2. Generate an App Password
+# 3. Use the App Password instead of your regular password 

@@ -395,5 +395,22 @@ app.get('/', (req, res) => {
   res.json({ status: 'ok', service: 'thavma-admin-server', timestamp: new Date().toISOString() });
 });
 
+// Route aliases for backward compatibility (handle both /login and /api/login)
+app.post('/login', async (req, res) => {
+  // Redirect to the actual API endpoint
+  req.url = '/api/login';
+  app(req, res);
+});
+
+app.get('/projects', async (req, res) => {
+  req.url = '/api/projects';
+  app(req, res);
+});
+
+app.post('/contact', async (req, res) => {
+  req.url = '/api/contact';
+  app(req, res);
+});
+
 // Export the Express app as a serverless handler for Vercel
 module.exports = (req, res) => app(req, res);

@@ -20,8 +20,27 @@ const Project = require('./models/Project');
 const ContactMessage = require('./models/ContactMessage');
 const Admin = require('./models/Admin');
 
+const allowedOrigins = [
+  'http://localhost:3000', // For local development
+  'https://thavmasolution.vercel.app/', // Replace with your production frontend URL
+  // Add other allowed frontend URLs if needed
+];
 // Middleware
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests with no origin (e.g., mobile apps or Postman)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Explicitly allow methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
+  credentials: true, // If your frontend sends cookies or auth tokens
+}));
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 
